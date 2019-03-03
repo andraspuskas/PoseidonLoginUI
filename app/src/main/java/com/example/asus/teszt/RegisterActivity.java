@@ -22,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         configureLoginButton();
 
+        final CardView hibapanel = (CardView) findViewById(R.id.ErrorMassage);
         CardView reggomb = (CardView) findViewById(R.id.RegisterButton);
         reggomb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,13 +35,17 @@ public class RegisterActivity extends AppCompatActivity {
                 eredmeny = r.kiertekeles(user.getText().toString(), pass.getText().toString(), vpass.getText().toString());
                 Log.i("INfo tag", String.valueOf(eredmeny));
                 if(eredmeny == 0){ // Minden helyes
+                    hibapanel.setVisibility(View.INVISIBLE);
                     openBejelentkezve();
                 } else if (eredmeny == 1){ // A felhasználónév már foglalat
                     hiba.setText("A felhasználónév már foglalt!");
+                    hibapanel.setVisibility(View.VISIBLE);
                 } else if (eredmeny == 2){ // A két jelszó nem eggyezik meg
                     hiba.setText("A két jelszó nem eggyezik meg!");
+                    hibapanel.setVisibility(View.VISIBLE);
                 } else if (eredmeny == 3){ // Minden mezőt ki kell tölteni
                     hiba.setText("Minden mezőt ki kell tölteni!");
+                    hibapanel.setVisibility(View.VISIBLE);
                 }
 
             }

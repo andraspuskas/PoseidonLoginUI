@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
         hiba = (TextView) findViewById(R.id.LoginError);
 
+        final CardView hibapanel = (CardView) findViewById(R.id.ErrorMassage);
         CardView logingomb = (CardView) findViewById(R.id.LoginButton);
         logingomb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,11 +31,14 @@ public class LoginActivity extends AppCompatActivity {
                 int eredmeny = s.kiertekeles(user.getText().toString(), pass.getText().toString());
 
                 if(eredmeny == 0){ // Minden helyes
+                    hibapanel.setVisibility(View.INVISIBLE);
                     openBejelentkezve();
                 } else if (eredmeny == 1){ // A felhasználónév vagy a jelszó hibás
                     hiba.setText("A felhasználónév vagy a jelszó helytelen!");
+                    hibapanel.setVisibility(View.VISIBLE);
                 } else if (eredmeny == 2){ // Minden mezőt ki kell tölteni
                     hiba.setText("Minden mezőt ki kell tölteni!");
+                    hibapanel.setVisibility(View.VISIBLE);
                 }
 
             }
